@@ -1,6 +1,140 @@
 package musicfan
 
-class ArtistController {
 
-    def index() { }
+import javax.xml.parsers.DocumentBuilder
+import javax.xml.parsers.DocumentBuilderFactory
+
+import org.w3c.dom.Document
+import org.w3c.dom.Node
+
+import utils.SignedRequestsHelper
+
+
+class ArtistController {
+	def bbPreURL = "http://api.remix.bestbuy.com/v1/products(customerReviewAverage>3"
+	def bbPostURL = ")?show=sku,name,image,url,customerReviewAverage,ReleaseDate,Genre&apiKey=ww7zssb9pd7trg82yy2wpx5m"
+	
+	private static final String AWS_ACCESS_KEY_ID = "AKIAJPBDKFV7TJZ4INIQ";
+	
+		/*
+		 * Your AWS Secret Key corresponding to the above ID, as taken from the AWS
+		 * Your Account page.
+		 */
+	private static final String AWS_SECRET_KEY = "/KcmpHwQMz5GbsNLXcLywjtoBBGyl7yT8Xz1rRhO";
+	private static final String ENDPOINT="ecs.amazonaws.com" ;
+	
+	def index() {
+		String artistName = params.artistName
+		String orginalName =artistName
+		String[] artistNameList = artistName.split(" ")
+		StringBuilder sb = new StringBuilder();
+		for(String s : artistNameList) {
+			sb.append(s).append("%20")
+		}
+		artistName = sb.toString()
+//		log.info ">>>>>>>>>>>>>>>>>" + artistName
+		
+		def bbXML =	bbProductSearch(artistName, 4)
+		def bbresults = [];
+//		log.info ">>>>>>>>>>>>>>>>>" + bbXML
+		
+		bbXML?.product?.each {
+			
+			def result = [:]
+			result.put("img", it.image)
+			result.put("review", it.customerReviewAverage)
+			result.put("releaseDate", it.releaseDate)
+			result.put("sku", it.sku)
+			result.put("name", it.name)
+			bbresults.add(result)
+		}
+		
+		amazonItemSearch(artistName);
+		 return [artistName: orginalName, bbresults : bbresults]
+	}
+	
+	def amazonItemSearch() {
+		/*
+		 * Set up the signed requests helper
+		 */
+		SignedRequestsHelper helper;
+		
+		try {
+			helper = SignedRequestsHelper.getInstance(ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_KEY);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		String requestUrl = null;
+		String title = null;
+
+		/* The helper can sign requests in two forms - map form and string form */
+		
+		/*
+		 * Here is an example in map form, where the request parameters are stored in a map.
+		 */
+		System.out.println("Map form example:");
+		Map<String, String> param = new HashMap<String, String>();
+		//new added associate tag
+		param.put("AssociateTag","musicp00-20");
+		param.put("Service", "AWSECommerceService");
+		param.put("Version", "2013-08-01");
+
+		param.put("Operation", "ItemSearch");
+		param.put("Keywords","michael+jackson");
+		param.put("SearchIndex", "Music"); //Note search index can be in the range of Fashion,Music, Books,MusicTracks,DVD,DigitalMusic,Beauty,Apparel
+		
+		//params.put("ResponseGroup", "Reviews");
+
+		requestUrl = helper.sign(param);l
+		log.info "Signed Request is \"" + requestUrl + "\"";
+
+		title = fetchTitle(requestUrl);
+		log.info "Signed Title is \"" + title + "\"";
+	}
+	
+	
+	/*
+	 * Utility function to fetch the response from the service and extract the
+	 * title from the XML.
+	 */
+	private static String fetchTitle(String requestUrl) {
+		String title = null;
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = db.parse(requestUrl);
+			Node titleNode = doc.getElementsByTagName("Title").item(0);
+			title = titleNode.getTextContent();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return title;
+	}
+	def bbProductSearch(def artistName, def pageSize) {
+		//Setup a connection to pull data in with REST
+		def url = new URL(bbPreURL + "&artistName=" + artistName + bbPostURL + "&pageSize=" + pageSize)
+		def connection = url.openConnection()
+		connection.setRequestMethod("GET")
+		connection.connect()
+		def returnMessage = ""
+		def records
+//		log.info "<<<<<<<<<<<<<<<<" + url
+		
+//		log.info "<<<<<<<<<<<<<<<<" + connection.responseCode
+		if (connection.responseCode == 200 || connection.responseCode == 201){
+		  returnMessage = connection.content.text
+//		  log.info ">>>>>>>>>>>>>>>>>" + returnMessage
+		  
+		   records= new XmlSlurper().parseText(returnMessage)
+		  
+		} else {
+		  println "Error Connecting to " + url
+		}
+		return records
+	}
+	
+	
 }
+

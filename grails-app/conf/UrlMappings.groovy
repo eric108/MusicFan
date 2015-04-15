@@ -6,7 +6,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-		"/product/$productId?"(controller: "product", action: "index", view:"index")
+		"/artist/$artistName"(controller: "artist", action: "index", view:"index")
 		
 		
         "/"(view:"/index")
