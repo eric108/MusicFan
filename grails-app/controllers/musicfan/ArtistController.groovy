@@ -53,7 +53,7 @@ class ArtistController {
 		 return [artistName: orginalName, bbresults : bbresults]
 	}
 	
-	def amazonItemSearch() {
+	def amazonItemSearch(def artistName) {
 		/*
 		 * Set up the signed requests helper
 		 */
@@ -82,12 +82,12 @@ class ArtistController {
 		param.put("Version", "2013-08-01");
 
 		param.put("Operation", "ItemSearch");
-		param.put("Keywords","michael+jackson");
+		param.put("Keywords",artistName);
 		param.put("SearchIndex", "Music"); //Note search index can be in the range of Fashion,Music, Books,MusicTracks,DVD,DigitalMusic,Beauty,Apparel
 		
 		//params.put("ResponseGroup", "Reviews");
 
-		requestUrl = helper.sign(param);l
+		requestUrl = helper.sign(param);
 		log.info "Signed Request is \"" + requestUrl + "\"";
 
 		title = fetchTitle(requestUrl);
