@@ -89,12 +89,20 @@
           </div>
           
                     <div class="row placeholders">
-            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/1280px-Best_Buy_Logo.svg.png" class="img-responsive" alt="marketplace" height="80" width="80">
+            <img src="http://media.corporate-ir.net/media_files/IROL/97/97664/images/amazon_logo_RGB.jpg" class="img-responsive" alt="marketplace" height="80" width="80">
           
-			<g:each in="${bbresults}">
+			<g:each in="${amazonItems}">
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <img src="${it.img}" class="img-responsive" alt="Generic placeholder thumbnail">
-	              <h4>${it.name}</h4>
+	              <img src="${it.Image}" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <h4>${it.Name}</h4>
+	              <form class="navbar-form" action="${it.WishList}">
+    				<input class="form-control" type="submit" value="Add to WishList">
+				  </form>
+				  
+				  <form class="navbar-form" action="${it.WishList}">
+    				<input class="form-control" type="submit" value="Check all Offers">
+				  </form>
+	              
 	              <span class="text-muted">Review ${it.review}/5, Release Date ${it.releaseDate}</span>
 	            </div>
           	
@@ -234,14 +242,6 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
 </html>

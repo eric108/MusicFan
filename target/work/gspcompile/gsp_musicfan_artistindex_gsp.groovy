@@ -52,8 +52,8 @@ createTagBody(1, {->
 printHtmlPart(12)
 expressionOut.print(artistName)
 printHtmlPart(13)
-for( _it2078645579 in (bbresults) ) {
-changeItVariable(_it2078645579)
+for( _it539346677 in (bbresults) ) {
+changeItVariable(_it539346677)
 printHtmlPart(14)
 expressionOut.print(it.img)
 printHtmlPart(15)
@@ -65,16 +65,33 @@ expressionOut.print(it.releaseDate)
 printHtmlPart(18)
 }
 printHtmlPart(19)
-})
-invokeTag('captureBody','sitemesh',222,[:],1)
+for( _it271126352 in (amazonItems) ) {
+changeItVariable(_it271126352)
+printHtmlPart(14)
+expressionOut.print(it.Image)
+printHtmlPart(15)
+expressionOut.print(it.Name)
 printHtmlPart(20)
+expressionOut.print(it.WishList)
+printHtmlPart(21)
+expressionOut.print(it.WishList)
+printHtmlPart(22)
+expressionOut.print(it.review)
+printHtmlPart(17)
+expressionOut.print(it.releaseDate)
+printHtmlPart(18)
+}
+printHtmlPart(23)
+})
+invokeTag('captureBody','sitemesh',254,[:],1)
+printHtmlPart(24)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1428527543000L
+public static final long LAST_MODIFIED = 1429137130000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

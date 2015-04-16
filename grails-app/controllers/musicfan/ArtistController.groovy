@@ -48,9 +48,76 @@ class ArtistController {
 			result.put("name", it.name)
 			bbresults.add(result)
 		}
+		def amazonXML = searchItems(amazonItemSearch(artistName))
+		def amazonItems = []
+		int index = 0;
+		amazonXML?.Items?.Item?.each {
+			if(it.ItemLinks && index<4) {
+				def amazonItem = [:]
+				amazonItem.put("ASIN", it.ASIN);
+				amazonItem.put("DetailPageURL", it.DetailPageURL)	
+				amazonItem.putAt("Name", it.ItemAttributes.Title.toString().substring(0, Math.min(30, it.ItemAttributes.Title.toString().length()-1)))
+				
+				it.ItemLinks.ItemLink.each {
+					if(it.Description.equals("Add To Wishlist")) {
+						amazonItem.put("WishList", it.URL)
+					}
+				}
+				amazonItem = matchAmazonImage(amazonItem, it.ASIN.toString());
+				index++;
+				amazonItems.add(amazonItem);
+			}
+		}
+		return [artistName: orginalName, bbresults : bbresults,  amazonItems : amazonItems]
+	}
+	
+	def matchAmazonImage(def amazonItem, def ItemId) {
 		
-		amazonItemSearch(artistName);
-		 return [artistName: orginalName, bbresults : bbresults]
+		def amazonXML = searchItems(amazonItemLookup(ItemId, "Images"))
+		amazonItem.putAt("Image", amazonXML.Items.Item.MediumImage.URL)
+		
+		return amazonItem
+	}
+	
+	def amazonItemLookup(def ItemId, def ResponseGroup) {
+		SignedRequestsHelper helper;
+		try {
+			helper = SignedRequestsHelper.getInstance(ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_KEY);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		String requestUrl = null;
+		String title = null;
+
+		/* The helper can sign requests in two forms - map form and string form */
+		
+		/*
+		 * Here is an example in map form, where the request parameters are stored in a map.
+		 */
+		Map<String, String> param = new HashMap<String, String>();
+		//new added associate tag
+		param.put("AssociateTag","musicp00-20");
+		param.put("Service", "AWSECommerceService");
+		//params.put("Version", "2009-03-31"); //the default oldest version API
+		param.put("Version", "2013-08-01");
+		param.put("Operation", "ItemLookup");
+
+		//params.put("Operation", "ItemSearch");
+		//params.put("ItemId", ITEM_ID);
+		param.put("ItemId", ItemId);
+		//params.put("Artist","OneRepublic");
+		//params.put("Keywords","OneRepublic");
+	   // params.put("SearchIndex", "Blended");
+		
+		param.put("ResponseGroup", ResponseGroup);
+
+		requestUrl = helper.sign(param);
+//		System.out.println("Signed Request is \"" + requestUrl + "\"");
+
+		
+		return requestUrl
 	}
 	
 	def amazonItemSearch(def artistName) {
@@ -90,10 +157,28 @@ class ArtistController {
 		requestUrl = helper.sign(param);
 		log.info "Signed Request is \"" + requestUrl + "\"";
 
-		title = fetchTitle(requestUrl);
-		log.info "Signed Title is \"" + title + "\"";
+		return requestUrl
+		
 	}
 	
+	def searchItems(String requestUrl) {
+
+		def connection = new URL(requestUrl).openConnection()
+		connection.setRequestMethod("GET")
+		connection.connect()
+		def returnMessage = ""
+		def records
+
+		if (connection.responseCode == 200 || connection.responseCode == 201){
+		  returnMessage = connection.content.text
+		  
+		   records= new XmlSlurper().parseText(returnMessage)
+		   		  
+		} else {
+		  println "Error Connecting to " + url
+		}
+		return records
+	}
 	
 	/*
 	 * Utility function to fetch the response from the service and extract the
