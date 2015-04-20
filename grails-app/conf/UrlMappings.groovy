@@ -6,8 +6,8 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-		"/artist/$artistName"(controller: "artist", action: "index", view:"index")
-		
+		"/artist/$artistName/$searchIndex"(controller: "artist", action: "index", view:"index")
+		"/data"(controller: "data", action: "index", view:"index")
 		
         "/"(view:"/index")
         "500"(view:'/error')

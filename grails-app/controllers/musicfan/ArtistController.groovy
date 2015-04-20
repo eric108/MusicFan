@@ -25,6 +25,7 @@ class ArtistController {
 	
 	def index() {
 		String artistName = params.artistName
+		def searchIndex = params.searchIndex
 		String orginalName =artistName
 		String[] artistNameList = artistName.split(" ")
 		StringBuilder sb = new StringBuilder();
@@ -48,7 +49,7 @@ class ArtistController {
 			result.put("name", it.name)
 			bbresults.add(result)
 		}
-		def amazonXML = searchItems(amazonItemSearch(artistName))
+		def amazonXML = searchItems(amazonItemSearch(artistName, searchIndex))
 		def amazonItems = []
 		int index = 0;
 		amazonXML?.Items?.Item?.each {
@@ -62,6 +63,10 @@ class ArtistController {
 					if(it.Description.equals("Add To Wishlist")) {
 						amazonItem.put("WishList", it.URL)
 					}
+//					if(it.Description.equals("Add To Wishlist")) {
+//						amazonItem.put("WishList", it.URL)
+//					}
+					
 				}
 				amazonItem = matchAmazonImage(amazonItem, it.ASIN.toString());
 				index++;
@@ -120,7 +125,7 @@ class ArtistController {
 		return requestUrl
 	}
 	
-	def amazonItemSearch(def artistName) {
+	def amazonItemSearch(def artistName, def searchIndex) {
 		/*
 		 * Set up the signed requests helper
 		 */
@@ -150,7 +155,7 @@ class ArtistController {
 
 		param.put("Operation", "ItemSearch");
 		param.put("Keywords",artistName);
-		param.put("SearchIndex", "Music"); //Note search index can be in the range of Fashion,Music, Books,MusicTracks,DVD,DigitalMusic,Beauty,Apparel
+		param.put("SearchIndex", searchIndex); //Note search index can be in the range of Fashion,Music, Books,MusicTracks,DVD,DigitalMusic,Beauty,Apparel
 		
 		//params.put("ResponseGroup", "Reviews");
 
@@ -170,9 +175,8 @@ class ArtistController {
 		def records
 
 		if (connection.responseCode == 200 || connection.responseCode == 201){
-		  returnMessage = connection.content.text
-		  
-		   records= new XmlSlurper().parseText(returnMessage)
+			returnMessage = connection.content.text
+			 records= new XmlSlurper().parseText(returnMessage)
 		   		  
 		} else {
 		  println "Error Connecting to " + url

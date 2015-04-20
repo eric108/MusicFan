@@ -67,6 +67,22 @@
 									<select id="selectSearch" class="input-group">
 									  <option value="artist">artist</option>
 									  <option value="song">song</option>
+									</select>
+										 
+									<select id="selectIndex" class="input-group">
+									  <option value="Music">Music</option>
+									  <option value="Fashion">Fashion</option>
+									  <option value="Books">Books</option>
+									  <option value="MusicTracks">MusicTracks</option>
+									  <option value="DVD">DVD</option>
+									  <option value="DigitalMusic">DigitalMusic</option>
+									  <option value="Beauty">Beauty</option>
+									  <option value="Apparel">Apparel</option>
+									  <option value="FashionMen">FashionMen</option>
+									  <option value="Electronics">Electronics</option>
+									  <option value="FashionWomen">FashionWomen</option>
+
+									  
 									</select>	
 								</div>
 								
