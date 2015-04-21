@@ -102,9 +102,9 @@ class ArtistController {
 		
 		def amazonXML = searchItems(amazonItemLookup(ItemId, "Offers"))
 		def keyOffers = [:]
-		keyOffers.putAt("LowestNewPrice", amazonXML.Items.Item.OfferSummary.LowestNewPrice.FormattedPrice)
-		keyOffers.putAt("LowestUsedPrice", amazonXML.Items.Item.OfferSummary.LowestUsedPrice.FormattedPrice)
-		keyOffers.putAt("LowestCollectiblePrice", amazonXML.Items.Item.OfferSummary.LowestCollectiblePrice.FormattedPrice)
+		keyOffers.putAt("LowestNewPrice", amazonXML?.Items?.Item?.OfferSummary?.LowestNewPrice?.FormattedPrice)
+		keyOffers.putAt("LowestUsedPrice", amazonXML?.Items?.Item?.OfferSummary?.LowestUsedPrice?.FormattedPrice)
+		keyOffers.putAt("LowestCollectiblePrice", amazonXML?.Items?.Item.OfferSummary?.LowestCollectiblePrice?.FormattedPrice)
 		
 		amazonItem.putAt("keyOffers", keyOffers)
 		
@@ -119,6 +119,7 @@ class ArtistController {
 			e.printStackTrace();
 			return;
 		}
+		Thread.sleep(100 ) 		
 		
 		String requestUrl = null;
 		String title = null;
@@ -164,7 +165,7 @@ class ArtistController {
 			e.printStackTrace();
 			return;
 		}
-		
+		Thread.sleep(100 ) 		
 		String requestUrl = null;
 		String title = null;
 
@@ -208,6 +209,8 @@ class ArtistController {
 		  println "Error Connecting to " + url
 		}
 		log.info "<<<<<<<<<<<<<<<<" + returnMessage
+		Thread.sleep(100 ) 		
+		
 		return records
 	}
 	
