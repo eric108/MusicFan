@@ -99,7 +99,7 @@
     				<input class="form-control" type="submit" value="Add to WishList">
 				  </form>
 				  
-				  <form class="navbar-form" action="${it.WishList}">
+				  <form class="navbar-form" action="${it.Offers}">
     				<input class="form-control" type="submit" value="Check all Offers">
 				  </form>
 	              

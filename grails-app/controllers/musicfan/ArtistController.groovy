@@ -63,9 +63,9 @@ class ArtistController {
 					if(it.Description.equals("Add To Wishlist")) {
 						amazonItem.put("WishList", it.URL)
 					}
-//					if(it.Description.equals("Add To Wishlist")) {
-//						amazonItem.put("WishList", it.URL)
-//					}
+					if(it.Description.equals("All Offers")) {
+						amazonItem.put("Offers", it.URL)
+					}
 					
 				}
 				amazonItem = matchAmazonImage(amazonItem, it.ASIN.toString());
@@ -173,14 +173,14 @@ class ArtistController {
 		connection.connect()
 		def returnMessage = ""
 		def records
-
+		
 		if (connection.responseCode == 200 || connection.responseCode == 201){
 			returnMessage = connection.content.text
 			 records= new XmlSlurper().parseText(returnMessage)
-		   		  
 		} else {
 		  println "Error Connecting to " + url
 		}
+		
 		return records
 	}
 	
