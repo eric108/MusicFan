@@ -102,6 +102,10 @@
 				  <form class="navbar-form" action="${it.Offers}">
     				<input class="form-control" type="submit" value="Check all Offers">
 				  </form>
+				  <span class="text-muted">LowestNewPrice ${it.keyOffers.LowestNewPrice}</span>
+				  <span class="text-muted">LowestUsedPrice ${it.keyOffers.LowestUsedPrice}</span>
+				  <span class="text-muted">LowestCollectiblePrice ${it.keyOffers.LowestCollectiblePrice}</span>
+				  
 	              <div class="embed-responsive embed-responsive-16by9">
   						<iframe class="embed-responsive-item" src="${it.Reviews}"></iframe>
 				  </div>

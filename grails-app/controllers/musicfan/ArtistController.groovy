@@ -72,6 +72,8 @@ class ArtistController {
 				}
 				amazonItem = matchAmazonImage(amazonItem, it.ASIN.toString());
 				amazonItem = matchAmazonReviews(amazonItem, it.ASIN.toString());
+				amazonItem = matchAmazonOffers(amazonItem, it.ASIN.toString());
+				
 				
 				index++;
 				amazonItems.add(amazonItem);
@@ -91,8 +93,20 @@ class ArtistController {
 	def matchAmazonReviews(def amazonItem, def ItemId) {
 		
 		def amazonXML = searchItems(amazonItemLookup(ItemId, "Reviews"))
-//		log.info ">>>>>>>>>>>>>>>>" + amazonXML
 		amazonItem.putAt("Reviews", amazonXML.Items.Item.CustomerReviews.IFrameURL)
+		
+		return amazonItem
+	}
+	
+	def matchAmazonOffers(def amazonItem, def ItemId) {
+		
+		def amazonXML = searchItems(amazonItemLookup(ItemId, "Offers"))
+		def keyOffers = [:]
+		keyOffers.putAt("LowestNewPrice", amazonXML.Items.Item.OfferSummary.LowestNewPrice.FormattedPrice)
+		keyOffers.putAt("LowestUsedPrice", amazonXML.Items.Item.OfferSummary.LowestUsedPrice.FormattedPrice)
+		keyOffers.putAt("LowestCollectiblePrice", amazonXML.Items.Item.OfferSummary.LowestCollectiblePrice.FormattedPrice)
+		
+		amazonItem.putAt("keyOffers", keyOffers)
 		
 		return amazonItem
 	}
@@ -193,7 +207,7 @@ class ArtistController {
 		} else {
 		  println "Error Connecting to " + url
 		}
-//		log.info "<<<<<<<<<<<<<<<<" + returnMessage
+		log.info "<<<<<<<<<<<<<<<<" + returnMessage
 		return records
 	}
 	
