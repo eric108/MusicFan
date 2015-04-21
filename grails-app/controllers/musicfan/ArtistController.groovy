@@ -1,6 +1,8 @@
 package musicfan
 
 
+import java.util.logging.Logger;
+
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
 
@@ -69,6 +71,8 @@ class ArtistController {
 					
 				}
 				amazonItem = matchAmazonImage(amazonItem, it.ASIN.toString());
+				amazonItem = matchAmazonReviews(amazonItem, it.ASIN.toString());
+				
 				index++;
 				amazonItems.add(amazonItem);
 			}
@@ -80,6 +84,15 @@ class ArtistController {
 		
 		def amazonXML = searchItems(amazonItemLookup(ItemId, "Images"))
 		amazonItem.putAt("Image", amazonXML.Items.Item.MediumImage.URL)
+		
+		return amazonItem
+	}
+	
+	def matchAmazonReviews(def amazonItem, def ItemId) {
+		
+		def amazonXML = searchItems(amazonItemLookup(ItemId, "Reviews"))
+//		log.info ">>>>>>>>>>>>>>>>" + amazonXML
+		amazonItem.putAt("Reviews", amazonXML.Items.Item.CustomerReviews.IFrameURL)
 		
 		return amazonItem
 	}
@@ -180,7 +193,7 @@ class ArtistController {
 		} else {
 		  println "Error Connecting to " + url
 		}
-		
+//		log.info "<<<<<<<<<<<<<<<<" + returnMessage
 		return records
 	}
 	

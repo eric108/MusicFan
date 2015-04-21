@@ -102,8 +102,9 @@
 				  <form class="navbar-form" action="${it.Offers}">
     				<input class="form-control" type="submit" value="Check all Offers">
 				  </form>
-	              
-	              <span class="text-muted">Review ${it.review}/5, Release Date ${it.releaseDate}</span>
+	              <div class="embed-responsive embed-responsive-16by9">
+  						<iframe class="embed-responsive-item" src="${it.Reviews}"></iframe>
+				  </div>
 	            </div>
           	
           	</g:each>
