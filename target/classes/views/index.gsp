@@ -66,7 +66,7 @@
 					        	<div class="btn-group pull-left" style="margin-right:10px;">
 									<select id="selectSearch" class="input-group">
 									  <option value="artist">artist</option>
-									  <option value="song">song</option>
+									  <option value="genre">genre</option>
 									</select>
 										 
 									<select id="selectIndex" class="input-group">

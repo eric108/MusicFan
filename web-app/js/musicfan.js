@@ -8,4 +8,5 @@ function goToResults() {
     var selectedIndex = document.getElementById("selectIndex").value;
 
     document.getElementById("search-form").action =selected+'/' + input+'/' + selectedIndex;
-    }
+    
+}
