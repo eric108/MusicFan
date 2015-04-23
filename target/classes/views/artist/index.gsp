@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/musicfan">MusicFan</a>
+          <a class="navbar-brand" href="/">MusicFan</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -79,7 +79,7 @@
           
 			<g:each in="${bbresults}">
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <a href="${it.url}"><img src="${it.img}" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+	              <a href="${it.url}"><img src="${it.img}" class="img-responsive" alt="Generic placeholder thumbnail" height="150" width="150"></a>
 	              <h4>${it.name}</h4>
 	              <span class="text-muted">Review ${it.review}/5, Release Date ${it.releaseDate}</span>
 	            </div>
@@ -93,7 +93,7 @@
           
 			<g:each in="${amazonItems}">
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <a href="${it.DetailPageURL}"><img src="${it.Image}" class="img-responsive" alt="Generic placeholder thumbnail"></a>
+	              <a href="${it.DetailPageURL}"><img src="${it.Image}" class="img-responsive" alt="Generic placeholder thumbnail" height="150" width="150"></a>
 	              <h4>${it.Name}</h4>
 	              <form class="navbar-form" action="${it.WishList}">
     				<input class="form-control" type="submit" value="Add to WishList">
@@ -118,7 +118,7 @@
             <img src="http://upcity.com/blog/wp-content/uploads/2013/12/twitter-logo.png" class="img-responsive" alt="marketplace" height="80" width="80">
           
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <a href="${twitter}"><img src="${bbresults.get(0).img}" class="img-responsive" alt="Generic placeholder thumbnail"> </a>
+	              <a href="${twitter}"><img src="${bbresults.get(0).img}" class="img-responsive" alt="Generic placeholder thumbnail" height="150" width="150"> </a>
 	              <h4>${artistName}</h4>
 	              <span class="text-muted">Check her twitter</span>
 	            </div>

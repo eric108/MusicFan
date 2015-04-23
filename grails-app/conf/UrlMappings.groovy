@@ -9,7 +9,7 @@ class UrlMappings {
 		"/artist/$artistName/$searchIndex"(controller: "artist", action: "index", view:"index")
 		"/data"(controller: "data", action: "index", view:"index")
 		
-		"/genre/$genreName/$searchIndex"(controller: "genre", action: "index", view:"index")
+		"/genre/$genre/$searchIndex"(controller: "genre", action: "index", view:"index")
 		
         "/"(view:"/index")
         "500"(view:'/error')
