@@ -43,7 +43,7 @@ class GenreController {
 			}
 		}
 		
-		[genre: orginalGenre, bbresults : bbresults, twitter: "https://twitter.com/search?q=%40"+genre ]
+		return [genre: orginalGenre, bbresults : bbresults, twitter: "https://twitter.com/search?q=%40"+genre ]
 	}
 	
 	def bbGenreSearch(def genre, def pageSize) {

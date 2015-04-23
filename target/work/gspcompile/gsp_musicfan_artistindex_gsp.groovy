@@ -52,42 +52,46 @@ createTagBody(1, {->
 printHtmlPart(12)
 expressionOut.print(artistName)
 printHtmlPart(13)
-for( _it424823706 in (bbresults) ) {
-changeItVariable(_it424823706)
+for( _it1172931506 in (bbresults) ) {
+changeItVariable(_it1172931506)
 printHtmlPart(14)
+expressionOut.print(it.url)
+printHtmlPart(15)
 expressionOut.print(it.img)
-printHtmlPart(15)
-expressionOut.print(it.name)
 printHtmlPart(16)
-expressionOut.print(it.review)
+expressionOut.print(it.name)
 printHtmlPart(17)
-expressionOut.print(it.releaseDate)
+expressionOut.print(it.review)
 printHtmlPart(18)
-}
+expressionOut.print(it.releaseDate)
 printHtmlPart(19)
-for( _it1776384114 in (amazonItems) ) {
-changeItVariable(_it1776384114)
-printHtmlPart(14)
-expressionOut.print(it.Image)
-printHtmlPart(15)
-expressionOut.print(it.Name)
-printHtmlPart(20)
-expressionOut.print(it.WishList)
-printHtmlPart(21)
-expressionOut.print(it.Offers)
-printHtmlPart(22)
-expressionOut.print(it.keyOffers.LowestNewPrice)
-printHtmlPart(23)
-expressionOut.print(it.keyOffers.LowestUsedPrice)
-printHtmlPart(24)
-expressionOut.print(it.keyOffers.LowestCollectiblePrice)
-printHtmlPart(25)
-expressionOut.print(it.Reviews)
-printHtmlPart(26)
 }
+printHtmlPart(20)
+for( _it1707425529 in (amazonItems) ) {
+changeItVariable(_it1707425529)
+printHtmlPart(14)
+expressionOut.print(it.DetailPageURL)
+printHtmlPart(15)
+expressionOut.print(it.Image)
+printHtmlPart(16)
+expressionOut.print(it.Name)
+printHtmlPart(21)
+expressionOut.print(it.WishList)
+printHtmlPart(22)
+expressionOut.print(it.Offers)
+printHtmlPart(23)
+expressionOut.print(it.keyOffers.LowestNewPrice)
+printHtmlPart(24)
+expressionOut.print(it.keyOffers.LowestUsedPrice)
+printHtmlPart(25)
+expressionOut.print(it.keyOffers.LowestCollectiblePrice)
+printHtmlPart(26)
+expressionOut.print(it.Reviews)
 printHtmlPart(27)
-expressionOut.print(twitter)
+}
 printHtmlPart(28)
+expressionOut.print(twitter)
+printHtmlPart(15)
 expressionOut.print(bbresults.get(0).img)
 printHtmlPart(29)
 expressionOut.print(artistName)
@@ -103,7 +107,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1429724972000L
+public static final long LAST_MODIFIED = 1429816184000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

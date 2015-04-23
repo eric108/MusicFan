@@ -72,7 +72,7 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Results for ${gnere}</h1>
+          <h1 class="page-header">Results for ${genre}</h1>
 
           <div class="row placeholders">
             <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Best_Buy_Logo.svg/1280px-Best_Buy_Logo.svg.png" class="img-responsive" alt="marketplace" height="80" width="80">
