@@ -88,7 +88,7 @@
           
           </div>
           
-                    <div class="row placeholders">
+          <div class="row placeholders">
             <img src="http://media.corporate-ir.net/media_files/IROL/97/97664/images/amazon_logo_RGB.jpg" class="img-responsive" alt="marketplace" height="80" width="80">
           
 			<g:each in="${amazonItems}">
@@ -114,6 +114,31 @@
           	</g:each>
           
           </div>
+          <div class="row placeholders">
+            <img src="http://upcity.com/blog/wp-content/uploads/2013/12/twitter-logo.png" class="img-responsive" alt="marketplace" height="80" width="80">
+          
+	          	<div class="col-xs-6 col-sm-3 placeholder">
+	              <a href="${twitter}"><img src="${bbresults.get(0).img}" class="img-responsive" alt="Generic placeholder thumbnail"> </a>
+	              <h4>${artistName}</h4>
+	              <span class="text-muted">Check her twitter</span>
+	            </div>
+          	
+          
+          </div>
+
+			<script>
+			  (function() {
+			    var cx = '013258571623697993660:wjii10na0ny';
+			    var gcse = document.createElement('script');
+			    gcse.type = 'text/javascript';
+			    gcse.async = true;
+			    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+			        '//www.google.com/cse/cse.js?cx=' + cx;
+			    var s = document.getElementsByTagName('script')[0];
+			    s.parentNode.insertBefore(gcse, s);
+				  })();
+			</script>
+			<gcse:search></gcse:search>
 
           <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">

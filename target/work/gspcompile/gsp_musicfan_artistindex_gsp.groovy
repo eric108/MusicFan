@@ -52,8 +52,8 @@ createTagBody(1, {->
 printHtmlPart(12)
 expressionOut.print(artistName)
 printHtmlPart(13)
-for( _it66856360 in (bbresults) ) {
-changeItVariable(_it66856360)
+for( _it424823706 in (bbresults) ) {
+changeItVariable(_it424823706)
 printHtmlPart(14)
 expressionOut.print(it.img)
 printHtmlPart(15)
@@ -65,8 +65,8 @@ expressionOut.print(it.releaseDate)
 printHtmlPart(18)
 }
 printHtmlPart(19)
-for( _it520895139 in (amazonItems) ) {
-changeItVariable(_it520895139)
+for( _it1776384114 in (amazonItems) ) {
+changeItVariable(_it1776384114)
 printHtmlPart(14)
 expressionOut.print(it.Image)
 printHtmlPart(15)
@@ -86,16 +86,24 @@ expressionOut.print(it.Reviews)
 printHtmlPart(26)
 }
 printHtmlPart(27)
-})
-invokeTag('captureBody','sitemesh',249,[:],1)
+expressionOut.print(twitter)
 printHtmlPart(28)
+expressionOut.print(bbresults.get(0).img)
+printHtmlPart(29)
+expressionOut.print(artistName)
+printHtmlPart(30)
+invokeTag('search','gcse',141,[:],-1)
+printHtmlPart(31)
+})
+invokeTag('captureBody','sitemesh',274,[:],1)
+printHtmlPart(32)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1429629003000L
+public static final long LAST_MODIFIED = 1429724972000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

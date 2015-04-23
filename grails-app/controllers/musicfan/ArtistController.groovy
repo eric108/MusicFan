@@ -79,7 +79,13 @@ class ArtistController {
 				amazonItems.add(amazonItem);
 			}
 		}
-		return [artistName: orginalName, bbresults : bbresults,  amazonItems : amazonItems]
+		if(params.type == 'json') {
+			render(contentType: "text/json") {
+				[artistName: orginalName, bbresults : bbresults,  amazonItems : amazonItems, twitter: "https://twitter.com/search?q=%40"+artistName ]
+			}
+		}
+		
+		return [artistName: orginalName, bbresults : bbresults,  amazonItems : amazonItems, twitter: "https://twitter.com/search?q=%40"+artistName ]
 	}
 	
 	def matchAmazonImage(def amazonItem, def ItemId) {
@@ -208,8 +214,8 @@ class ArtistController {
 		} else {
 		  println "Error Connecting to " + url
 		}
-		log.info "<<<<<<<<<<<<<<<<" + returnMessage
-		Thread.sleep(100 ) 		
+//		log.info "<<<<<<<<<<<<<<<<" + returnMessage
+		Thread.sleep(400 ) 		
 		
 		return records
 	}
