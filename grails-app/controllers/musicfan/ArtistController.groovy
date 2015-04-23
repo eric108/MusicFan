@@ -29,6 +29,7 @@ class ArtistController {
 		String artistName = params.artistName
 		def searchIndex = params.searchIndex
 		String orginalName =artistName
+		log.info ">>>>>>>>>>>>" + orginalName
 		String[] artistNameList = artistName.split(" ")
 		StringBuilder sb = new StringBuilder();
 		for(String s : artistNameList) {
@@ -49,9 +50,10 @@ class ArtistController {
 			result.put("releaseDate", it.releaseDate)
 			result.put("sku", it.sku)
 			result.put("name", it.name)
+			result.put("url", it.url);
 			bbresults.add(result)
 		}
-		def amazonXML = searchItems(amazonItemSearch(artistName, searchIndex))
+		def amazonXML = searchItems(amazonItemSearch(orginalName, searchIndex))
 		def amazonItems = []
 		int index = 0;
 		amazonXML?.Items?.Item?.each {
@@ -207,7 +209,7 @@ class ArtistController {
 		connection.connect()
 		def returnMessage = ""
 		def records
-		
+		log.info ">>>>>>>>>>>>>>>>>>" + requestUrl
 		if (connection.responseCode == 200 || connection.responseCode == 201){
 			returnMessage = connection.content.text
 			 records= new XmlSlurper().parseText(returnMessage)

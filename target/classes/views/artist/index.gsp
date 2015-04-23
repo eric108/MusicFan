@@ -79,7 +79,7 @@
           
 			<g:each in="${bbresults}">
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <img src="${it.img}" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <a href="${it.url}"><img src="${it.img}" class="img-responsive" alt="Generic placeholder thumbnail"></a>
 	              <h4>${it.name}</h4>
 	              <span class="text-muted">Review ${it.review}/5, Release Date ${it.releaseDate}</span>
 	            </div>
@@ -93,7 +93,7 @@
           
 			<g:each in="${amazonItems}">
 	          	<div class="col-xs-6 col-sm-3 placeholder">
-	              <img src="${it.Image}" class="img-responsive" alt="Generic placeholder thumbnail">
+	              <a href="${it.DetailPageURL}"><img src="${it.Image}" class="img-responsive" alt="Generic placeholder thumbnail"></a>
 	              <h4>${it.Name}</h4>
 	              <form class="navbar-form" action="${it.WishList}">
     				<input class="form-control" type="submit" value="Add to WishList">
