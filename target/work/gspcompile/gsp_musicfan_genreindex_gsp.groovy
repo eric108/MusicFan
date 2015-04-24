@@ -25,57 +25,61 @@ printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("")],-1)
 printHtmlPart(3)
 createTagBody(2, {->
-createClosureForHtmlPart(4, 3)
+createTagBody(3, {->
+printHtmlPart(4)
+expressionOut.print(genre)
+printHtmlPart(5)
+})
 invokeTag('captureTitle','sitemesh',10,[:],3)
 })
 invokeTag('wrapTitleTag','sitemesh',10,[:],2)
-printHtmlPart(5)
+printHtmlPart(6)
 expressionOut.print(resource(dir:'css',file:'bootstrap.min.css'))
-printHtmlPart(6)
-expressionOut.print(resource(dir:'css',file:'jumbotron.css'))
-printHtmlPart(6)
-expressionOut.print(resource(dir:'css',file:'dashboard.css'))
 printHtmlPart(7)
-expressionOut.print(resource(dir:'js',file:'bootstrap.min.js'))
+expressionOut.print(resource(dir:'css',file:'jumbotron.css'))
+printHtmlPart(7)
+expressionOut.print(resource(dir:'css',file:'dashboard.css'))
 printHtmlPart(8)
-expressionOut.print(resource(dir:'js',file:'musicfan.js'))
+expressionOut.print(resource(dir:'js',file:'bootstrap.min.js'))
 printHtmlPart(9)
-expressionOut.print(resource(dir:'js',file:'holder.js'))
+expressionOut.print(resource(dir:'js',file:'musicfan.js'))
 printHtmlPart(10)
+expressionOut.print(resource(dir:'js',file:'holder.js'))
+printHtmlPart(11)
 })
 invokeTag('captureHead','sitemesh',23,[:],1)
-printHtmlPart(11)
-createTagBody(1, {->
 printHtmlPart(12)
-expressionOut.print(gnere)
+createTagBody(1, {->
 printHtmlPart(13)
-for( _it698944638 in (bbresults) ) {
-changeItVariable(_it698944638)
+expressionOut.print(genre)
 printHtmlPart(14)
-expressionOut.print(it.url)
+for( _it728892651 in (bbresults) ) {
+changeItVariable(_it728892651)
 printHtmlPart(15)
-expressionOut.print(it.img)
+expressionOut.print(it.url)
 printHtmlPart(16)
-expressionOut.print(it.name)
+expressionOut.print(it.img)
 printHtmlPart(17)
-expressionOut.print(it.review)
+expressionOut.print(it.name)
 printHtmlPart(18)
-expressionOut.print(it.releaseDate)
+expressionOut.print(it.review)
 printHtmlPart(19)
-}
+expressionOut.print(it.releaseDate)
 printHtmlPart(20)
-invokeTag('search','gcse',104,[:],-1)
+}
 printHtmlPart(21)
+invokeTag('search','gcse',104,[:],-1)
+printHtmlPart(22)
 })
 invokeTag('captureBody','sitemesh',237,[:],1)
-printHtmlPart(22)
+printHtmlPart(23)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1429814968000L
+public static final long LAST_MODIFIED = 1429818013000L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

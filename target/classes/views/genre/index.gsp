@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Genre Results</title>
+    <title>Genre ${genre} Results </title>
 
     <link rel="stylesheet" href="${resource(dir:'css',file:'bootstrap.min.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css',file:'jumbotron.css')}" />

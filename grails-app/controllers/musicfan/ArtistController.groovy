@@ -127,7 +127,7 @@ class ArtistController {
 			e.printStackTrace();
 			return;
 		}
-		Thread.sleep(100 ) 		
+		Thread.sleep(300 ) 		
 		
 		String requestUrl = null;
 		String title = null;
@@ -173,7 +173,7 @@ class ArtistController {
 			e.printStackTrace();
 			return;
 		}
-		Thread.sleep(100 ) 		
+		Thread.sleep(300 ) 		
 		String requestUrl = null;
 		String title = null;
 
@@ -217,7 +217,7 @@ class ArtistController {
 		  println "Error Connecting to " + url
 		}
 //		log.info "<<<<<<<<<<<<<<<<" + returnMessage
-		Thread.sleep(400 ) 		
+		Thread.sleep(300 ) 		
 		
 		return records
 	}
